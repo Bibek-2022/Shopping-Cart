@@ -1,0 +1,17 @@
+### live server test 
+
+GET http://localhost:8000/api/v1/product
+
+
+### post product
+
+POST http://localhost:8000/api/v1/product
+Content-Type: application/json
+    
+    {
+        "status": "active",
+        "name": "product1",
+        "type": "product",
+        "price": 100,
+        "description": "product1 description"
+    }
