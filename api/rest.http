@@ -11,7 +11,7 @@ Content-Type: application/json
     {
         "status": "inactive",
         "name": "product2",
-        "type": "product",
+        "type": "",
         "cost": 900,
         "description": "product1 description"
     }
@@ -24,11 +24,11 @@ PUT http://localhost:8000/api/v1/product
 Content-Type: application/json
     
     {
-        "_id":"62d396c23a2f120aa6225d41",
+        "_id":"62d3a6f205f86c3aabb1f271",
         "status": "active",
         "name": "Bibek",
         "type": "andrew",
-        "cost": 3003030,
+        "cost": 300,
         "description": "product1 description"
     }
 
