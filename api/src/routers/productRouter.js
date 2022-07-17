@@ -1,6 +1,10 @@
 import express from "express";
 import { getProductController } from "../controllers/ProuctController.js";
 import {
+  productValidation,
+  updateProductValidation,
+} from "../middlewares/validationMiddleware.js";
+import {
   createProduct,
   deleteProduct,
   getProduct,
@@ -13,7 +17,7 @@ const router = express.Router();
 router.get("/", getProductController);
 
 // post the product
-router.post("/", async (req, res, next) => {
+router.post("/", productValidation, async (req, res, next) => {
   try {
     console.log(req.body);
     const result = await createProduct(req.body);
@@ -55,7 +59,7 @@ router.delete("/:_id", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
+router.put("/", updateProductValidation, async (req, res, next) => {
   try {
     const result = await updateProduct(req.body);
     console.log(req.body);
