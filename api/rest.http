@@ -9,9 +9,30 @@ POST http://localhost:8000/api/v1/product
 Content-Type: application/json
     
     {
-        "status": "active",
-        "name": "product1",
+        "status": "inactive",
+        "name": "product2",
         "type": "product",
-        "price": 100,
+        "cost": 900,
         "description": "product1 description"
     }
+
+
+
+### UPDATE product
+
+PUT http://localhost:8000/api/v1/product
+Content-Type: application/json
+    
+    {
+        "_id":"62d396c23a2f120aa6225d41",
+        "status": "active",
+        "name": "Bibek",
+        "type": "andrew",
+        "cost": 3003030,
+        "description": "product1 description"
+    }
+
+
+### delete product
+
+DELETE  http://localhost:8000/api/v1/product/62d394c182e0255a91613441

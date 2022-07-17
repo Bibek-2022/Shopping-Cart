@@ -1,30 +1,75 @@
 import express from "express";
-import { createProduct } from "../modals/products/ProductModal.js";
+import { getProductController } from "../controllers/ProuctController.js";
+import {
+  createProduct,
+  deleteProduct,
+  getProduct,
+  updateProduct,
+} from "../modals/products/ProductModal.js";
 
 const router = express.Router();
 
 // get the product
-router.get("/", (req, res, next) => {
+router.get("/", getProductController);
+
+// post the product
+router.post("/", async (req, res, next) => {
   try {
-    res.json({
-      status: "success",
-      message: "Here are the product",
-    });
+    console.log(req.body);
+    const result = await createProduct(req.body);
+
+    result?._id
+      ? res.json({
+          status: "success",
+          message: "Here are the product",
+          result,
+        })
+      : res.json({
+          status: "error",
+          message: "Product could not be created",
+          result,
+        });
   } catch (error) {
     next(error);
   }
 });
 
-// post the product
-router.post("/", async (req, res, next) => {
+router.delete("/:_id", async (req, res, next) => {
   try {
-    const result = createProduct(req.body);
-    console.log(result);
-    res.json({
-      status: "success",
-      message: "Here are the product",
-      result,
-    });
+    const { _id } = req.params;
+    const result = await deleteProduct(_id);
+
+    result?._id
+      ? res.json({
+          status: "success",
+          message: "Product Deleted",
+          result,
+        })
+      : res.json({
+          status: "error",
+          message: "Product could not be deleted",
+          result,
+        });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/", async (req, res, next) => {
+  try {
+    const result = await updateProduct(req.body);
+    console.log(req.body);
+    result?._id
+      ? res.json({
+          status: "success",
+          message: "Product Updated",
+          result,
+        })
+      : res.json({
+          status: "error",
+          message: "Product could not be upated",
+          result,
+        });
   } catch (error) {
     next(error);
   }
