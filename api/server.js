@@ -1,8 +1,9 @@
 import express from "express";
 import morgan from "morgan";
-
 import "dotenv/config";
 import helmet from "helmet";
+import cors from "cors";
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 
@@ -14,6 +15,7 @@ mongoConnect();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("tiny"));
+app.use(cors());
 // api
 import productRouter from "./src/routers/productRouter.js";
 
